@@ -1,0 +1,11 @@
+{{- range .Values.names}}
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  namespace: {{ . }}
+  name: cpu-mem-quota
+spec:
+  hard:
+    pods: "15"
+---
+{{- end}}

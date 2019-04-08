@@ -1,0 +1,9 @@
+{{- range .Values.names}}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ . }}
+  labels:
+    type: student
+---
+{{- end}}

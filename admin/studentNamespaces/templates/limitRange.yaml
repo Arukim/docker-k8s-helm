@@ -1,0 +1,20 @@
+{{- range .Values.names}}
+apiVersion: v1
+kind: LimitRange
+metadata:
+  namespace: {{ . }}
+  name: cpu-default-limit
+spec:
+  limits:
+  - default:
+      cpu: 500m
+      memory: 256Mi
+    defaultRequest:
+      cpu: 250m
+      memory: 128Mi
+    max:
+      cpu: 500m
+      memory: 512Mi
+    type: Container
+---
+{{- end}}
