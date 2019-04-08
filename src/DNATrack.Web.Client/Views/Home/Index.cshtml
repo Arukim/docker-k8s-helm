@@ -1,0 +1,60 @@
+﻿@model DNATrack.Web.Client.Models.HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<br />
+
+<div class="row">
+    <div class="col-md-4">
+        <a href="/?Skip=@(Model.Skip - 100)" class="btn btn-primary">
+            Prev
+        </a>
+        <a href="/?Skip=@(Model.Skip + 100)" class="btn btn-primary">
+            Next
+        </a>
+    </div>
+    <div class="col-md-4">
+        <form asp-action="DropTable">
+            <div class="form-group">
+                <input type="submit" value="Drop Table" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<table class="table table-bordered table-striped table-condensed">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                BatchId
+            </th>
+            <th>
+                Trace Number
+            </th>
+            <th>
+                DNA signature
+            </th>
+            <th>
+                Last Verified
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var trace in Model.Traces)
+        {
+
+            <tr>
+                <td> @trace.Id </td>
+                <td> @trace.BatchId</td>
+                <td> @trace.TraceNumber</td>
+                <td> @System.Convert.ToBase64String(trace.DNA)</td>
+                <td> @trace.LastValidation </td>
+            </tr>
+        }
+    </tbody>
+</table>

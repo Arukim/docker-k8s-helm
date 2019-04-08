@@ -1,0 +1,22 @@
+{
+  "Rabbit": {
+    "Endpoint": "rabbitmq://localhost:5672",
+    "Username": "rabbitmq",
+    "Password": "rabbitmq"
+  },
+  "Mongo": {
+    "Endpoint": "mongodb://localhost:27017",
+    "Database": "dnaTrack"
+  },
+  "Logging": {
+    "IncludeScopes": true,
+    "LogLevel": {
+      "Default": "Debug",
+      "System": "Information",
+      "Microsoft": "Information"
+    },
+    "Console": {
+      "IncludeScopes": true
+    }
+  }
+}

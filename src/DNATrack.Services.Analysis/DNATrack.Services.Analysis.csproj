@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <UserSecretsId>78724550-4947-4a84-8afc-0fbd010f328f</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="5.2.3" />
+    <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="5.2.3" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="5.2.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.2.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DNATrack.Common.Core\DNATrack.Common.Core.csproj" />
+    <ProjectReference Include="..\DNATrack.Common.Messaging\DNATrack.Common.Messaging.csproj" />
+    <ProjectReference Include="..\DNATrack.Persistence\DNATrack.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
