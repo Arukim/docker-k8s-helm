@@ -43,7 +43,7 @@ namespace DNATrack.Services.Analysis.Consumers
                         data = data.Concat(tData).ToArray();
                         data = sha256Hash.ComputeHash(data);
 
-                    } while (sw.ElapsedMilliseconds < 1000);
+                    } while (sw.ElapsedMilliseconds < 100);
                 }
 
                 var client = new MongoClient(dbConfig.Endpoint);

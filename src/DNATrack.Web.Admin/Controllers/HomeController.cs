@@ -28,7 +28,7 @@ namespace DNATrack.Web.Admin.Controllers
 
         public IActionResult Index()
         {
-            return View(new BatchViewModel { Count = 1000 });
+            return View(new BatchViewModel { Count = 100 });
         }
 
         [HttpPost]
