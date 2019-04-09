@@ -18,7 +18,8 @@ Build and run your own container, yo ho ho.
     - '.' - work folder
   - $docker images
   - run build again
-
+- Dangling images http://www.projectatomic.io/blog/2015/07/what-are-docker-none-none-images/
+- docker rmi $(docker images -f "dangling=true" -q)
 
 ### Inspect the image
 
@@ -39,9 +40,10 @@ Build and run your own container, yo ho ho.
   - $docker stop
   - $docker ps -a
   - $docker rm 
-  - $docker run -rm
+  - $docker run --rm
 - We also need a port
   - -p 8000:80
+  - N.B. order
   - browse
   - Create twice
   - delete old
@@ -49,7 +51,7 @@ Build and run your own container, yo ho ho.
   - $docker exec -it {containerId} /bin/bash
 
 ### We need a RabbitMQ
-- https://www.rabbitmq.com/download.html
+- https://www.rabbitmq.com/download.html 
 - $docker run -p "5672:5672" -e RABBITMQ_DEFAULT_USER="rabbitmq" -e RABBITMQ_DEFAULT_PASS="rabbitmq" rabbitmq:3-management
 
 
