@@ -1,0 +1,18 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: first-deploy
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: test-app
+  template:
+    metadata:
+      labels:
+        app: test-app
+    spec:
+      containers:
+        - name: test-app
+          image: busybox
+          command: ['sh', '-c', 'echo Hello Kubernetes! && sleep 3600']
