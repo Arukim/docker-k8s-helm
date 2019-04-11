@@ -15,6 +15,12 @@ services:
     restart: always
     ports: 
       - "27017:27017"   
-
+  webAdmin:
+    image: "dnatrack/web/admin"
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ./appsettings.json:/etc/config/appsettings.json:ro     
 #networks
 #volumes
