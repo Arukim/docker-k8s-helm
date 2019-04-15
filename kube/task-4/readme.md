@@ -8,7 +8,7 @@
 * View config 
   * $kubectl get configmap app -o yaml
 * Delete a config map
-  * $kubectl delete configmap app -o yaml
+  * $kubectl delete configmap app
 * Create a secret
   * $kubectl apply -f .\secret.yaml
 * View a secret
