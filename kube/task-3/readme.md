@@ -14,6 +14,8 @@
 * Edit configuration, set replica count to 5
   * Update deployment
   * View deployment, replica, pods
+* Delete a pod in deployment
+* Scale down deployment
 * Delete deployment
   * $kubectl delete -f .\first-deploy.yaml
 

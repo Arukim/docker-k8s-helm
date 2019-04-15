@@ -35,7 +35,7 @@
 $kubectl create -f 'path-to-file'
 
 $kubectl create -f 'path-to-directory'
-  * Create a resource and allow declarative managment
+  * Create a resource and allow declarative management
   
 $kubectl create -f 'file|dir' --save-config
   * Update existing resource with imperative command
