@@ -14,6 +14,7 @@
 * Edit configuration, set replica count to 5
   * Update deployment
   * View deployment, replica, pods
+* Talk about cordon, show k8s cluster capacities
 * Delete a pod in deployment
 * Scale down deployment
 * Delete deployment
