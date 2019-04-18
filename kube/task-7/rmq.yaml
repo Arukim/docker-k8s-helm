@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rmq
+spec:
+  ports:
+    - port: 5672
+  selector:
+    app: rmq-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dnatrack-rmq
+  labels:
+    app: rmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rmq-app
+  template:
+    metadata:
+      labels:
+        app: rmq-app
+        tier: service
+    spec:
+      containers:
+        - name: rmq-app
+          imagePullPolicy: Always
+          image: "rabbitmq:3-management"
+          ports:
+          - name: http
+            containerPort: 5672
+            protocol: TCP
+          - name: https
+            containerPort: 15672
+            protocol: TCP
+          env:
+          - name: RABBITMQ_DEFAULT_USER
+            value: "rabbitmq"
+          - name: RABBITMQ_DEFAULT_PASS
+            value: "rabbitmq"
+          - name: RABBITMQ_DEFAULT_VHOST
+            value: "/"
