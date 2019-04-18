@@ -24,9 +24,9 @@
     * TCP: 27017
 * Create services and ingress for
   * WebAdmin - edit existing config
-    * arukim/dnatrack-web-client:v1
-  * WebClient - create a new one
     * arukim/dnatrack-web-admin:v1
+  * WebClient - create a new one
+    * arukim/dnatrack-web-client:v1
 * Create deployment for 
   * Analysis - create a new one
     * arukim/dnatrack-service-analysis:v1
