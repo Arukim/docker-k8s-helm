@@ -1,0 +1,22 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: validation
+spec:
+  schedule: "*/3 * * * *"
+  jobTemplate:  
+    spec:
+      template:
+        spec:
+          containers:
+          - name: web-admin
+            imagePullPolicy: Always
+            image: "arukim/dnatrack-job-validator:v1"
+            volumeMounts:
+                - name: app-config
+                  mountPath: /etc/config
+          volumes:
+              - name: app-config
+                configMap:
+                  name: app
+          restartPolicy: Never

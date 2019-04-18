@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-client
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: web-client # NB!
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dnatrack-web-client
+  labels:
+    app: client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-client
+  template:
+    metadata:
+      labels:
+        app: web-client
+        tier: web
+        tag: "v1"
+    spec:
+      containers:
+        - name: web-client
+          imagePullPolicy: Always
+          image: "arukim/dnatrack-web-client:v1"
+          ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
+          - name: https
+            containerPort: 443
+            protocol: TCP
+          env:
+          - name: BasePath
+            value: "/demo/client"
+          volumeMounts:
+          - name: app-config
+            mountPath: /etc/config
+      volumes:
+        - name: app-config
+          configMap:
+            name: app

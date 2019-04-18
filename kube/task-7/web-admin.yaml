@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-admin
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: web-admin # NB!
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dnatrack-web-admin
+  labels:
+    app: admin
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-admin
+  template:
+    metadata:
+      labels:
+        app: web-admin
+        tier: web
+        tag: "v1"
+    spec:
+      containers:
+        - name: web-admin
+          imagePullPolicy: Always
+          image: "arukim/dnatrack-web-admin:v1"
+          ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
+          - name: https
+            containerPort: 443
+            protocol: TCP
+          env:
+          - name: BasePath
+            value: "/demo/admin"
+          volumeMounts:
+          - name: app-config
+            mountPath: /etc/config
+      volumes:
+        - name: app-config
+          configMap:
+            name: app
