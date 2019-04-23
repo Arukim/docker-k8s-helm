@@ -1,0 +1,49 @@
+{{- $apps := .Values.web -}}
+{{- range $key, $app := $apps.list }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{$.Release.Name}}-{{$app.name}}"
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: "{{$.Release.Name}}-{{$app.name}}"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{$.Release.Name}}-{{$app.name}}"
+  labels:
+    app: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{$.Release.Name}}-{{$app.name}}"
+  template:
+    metadata:
+      labels:
+        app: "{{$.Release.Name}}-{{$app.name}}"
+        tier: web
+    spec:
+      containers:
+        - name: "{{$.Release.Name}}-{{$app.name}}"
+          imagePullPolicy: Always
+          image:  "{{$app.image}}:{{$app.tag}}"
+          ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
+          env:
+          - name: BasePath
+            value: "{{$.Values.basePath}}/{{$app.path}}"
+          volumeMounts:
+          - name: app-config
+            mountPath: /etc/config
+      volumes:
+        - name: app-config
+          configMap:
+            name: "{{$.Release.Name}}-app"
+---
+{{- end}}

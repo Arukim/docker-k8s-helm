@@ -1,0 +1,41 @@
+{{- $apps := .Values.infrastructure -}}
+{{- range $key, $app := $apps.list }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{$.Release.Name}}-{{$app.name}}"
+spec:
+  ports:
+    - port: {{ $app.port }}
+  selector:
+    app: "{{$.Release.Name}}-{{$app.name}}"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{$.Release.Name}}-{{$app.name}}"
+  labels:
+    app: infrastructure
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ $.Release.Name }}-{{$app.name}}"
+  template:
+    metadata:
+      labels:
+        app: "{{ $.Release.Name }}-{{$app.name}}"
+        tier: infrastructure
+    spec:
+      containers:
+        - name: "{{ $.Release.Name }}-{{$app.name}}"
+          image: "{{$app.image}}:{{$app.tag}}"
+          ports:
+          - name: http
+            containerPort: {{$app.port}}
+            protocol: 
+        {{ if $app.env  }}
+          env: {{- toYaml $app.env | nindent 10}}
+        {{ end }}
+---
+{{- end}}

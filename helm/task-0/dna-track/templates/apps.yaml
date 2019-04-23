@@ -1,0 +1,37 @@
+{{- $apps := .Values.apps -}}
+{{- range $key, $app := $apps.list }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{$.Release.Name}}-{{$app.name}}"
+  labels:
+    app: "{{$.Release.Name}}-{{$app.name}}"
+spec:
+  replicas: {{$.Values.scale}}
+  selector:
+    matchLabels:
+      app: "{{$.Release.Name}}-{{$app.name}}"
+  template:
+    metadata:
+      labels:
+        app: "{{$.Release.Name}}-{{$app.name}}"
+        tier: app
+    spec:
+      containers:
+        - name: "{{$.Release.Name}}-{{$app.name}}"
+          imagePullPolicy: Always
+          image: "{{$app.image}}:{{$app.tag}}"
+          resources:
+            limits:
+              cpu: 200m
+            requests:
+              cpu: 100m          
+          volumeMounts:
+          - name: app-config
+            mountPath: /etc/config
+      volumes:
+        - name: app-config
+          configMap:
+            name: "{{$.Release.Name}}-app"
+---         
+{{- end -}}

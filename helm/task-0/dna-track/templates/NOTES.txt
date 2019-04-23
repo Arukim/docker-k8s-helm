@@ -1,0 +1,7 @@
+DNA-TRACK release {{ .Release.Name }} has been deployed
+  Admin is at: "http://hel.westeurope.cloudapp.azure.com{{ .Values.basePath }}/admin"
+  Client is at: "http://hel.westeurope.cloudapp.azure.com{{ .Values.basePath }}/client"
+To delete deployment:
+  helm delete {{ .Release.Name }}
+To watch current deployment:
+  helm status {{ .Release.Name }}

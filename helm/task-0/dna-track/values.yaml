@@ -1,0 +1,40 @@
+# List of infrastructure applications
+basePath: /demo
+scale: 2
+infrastructure:
+  list:
+    mongo:
+      name: mongo
+      port: 27017
+      image: "mongo"
+      tag: "4.0.5"
+    rabbit:
+      name: rmq
+      port: 5672
+      image: "rabbitmq"
+      tag: "3-management"
+      env:
+        - name: RABBITMQ_DEFAULT_USER
+          value: "rabbitmq"
+        - name: RABBITMQ_DEFAULT_PASS
+          value: "rabbitmq"
+        - name: RABBITMQ_DEFAULT_VHOST
+          value: "/"
+web:
+ list:
+    client:
+      name: "web-client"
+      image: "arukim/dnatrack-web-client"
+      tag: "v2"
+      path: "client"
+    admin:
+      name: "web-admin"
+      image: "arukim/dnatrack-web-admin"
+      tag: "v2"
+      path: "admin"
+apps:
+  list:
+    analysis:
+      name: "analysis"
+      image: "arukim/dnatrack-service-analysis"
+      tag: "v1"
