@@ -14,3 +14,5 @@
 * View a secret
   * $kubectl get secret
   * $kubectl get secret db-connection -o yaml
+* Delete a secret
+  * $kubectl delete -f ./secret.yaml

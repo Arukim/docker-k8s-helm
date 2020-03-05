@@ -20,7 +20,7 @@
   * $kubectl describe pod hello-world
 * Create a pod using declarative syntax
   * $kubectl apply -f hello-pod.yaml
-  * $kubectl describe pod hello-pod.yaml
+  * $kubectl describe pod hello-world
 * Add one more label in pod definition (language = bash)
   * $kubectl apply -f hello-pod.yaml
 * Finish task with cleaning up resources
@@ -29,7 +29,7 @@
 
 ## Commands list
 
-* Imperative resource managment
+* Imperative resource management
   * Create a resource using it's configuration
   
 $kubectl create -f 'path-to-file'
@@ -45,7 +45,7 @@ $kubectl replace -f 'file|dir'
 
 $kubectl delete -f 'file|dir'
 
-* Declarative resource managment
+* Declarative resource management
   
 $kubectl apply -f 'file|dir'
 
@@ -55,8 +55,8 @@ $kubectl get pods
 
 * View logs
 
- $kubectl logs {resource} --timestamps=true
+$kubectl logs {resource} --timestamps=true
 
 * View nodes
 
- $Kubectl get nodes
+$kubectl get nodes
