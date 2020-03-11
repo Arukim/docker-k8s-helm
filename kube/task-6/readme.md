@@ -2,7 +2,7 @@
 
 ## Create service and deployment
 
-* View both YAML and insert correct machine names (use equal to your namespace)
+* View web-admin.yaml
 * Create service, deployment and ingress
   * NB service and deployment in a single file
   * NB we need an ingress
