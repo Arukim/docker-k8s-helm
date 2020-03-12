@@ -25,12 +25,12 @@ web:
     client:
       name: "web-client"
       image: "arukim/dnatrack-web-client"
-      tag: "v2"
+      tag: "v1"
       path: "client"
     admin:
       name: "web-admin"
       image: "arukim/dnatrack-web-admin"
-      tag: "v2"
+      tag: "v1"
       path: "admin"
 apps:
   list:

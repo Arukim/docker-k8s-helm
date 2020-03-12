@@ -35,10 +35,7 @@ spec:
           ports:
           - name: http
             containerPort: 80
-            protocol: TCP
-          env:
-          - name: BasePath
-            value: "{{$.Values.basePath}}/{{$app.path}}"
+            protocol: TCP         
           volumeMounts:
           - name: app-config
             mountPath: /etc/config
